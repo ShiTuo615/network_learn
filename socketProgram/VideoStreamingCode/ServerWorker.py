@@ -66,6 +66,8 @@ class ServerWorker:
 				
 				# Send RTSP reply
 				self.replyRtsp(self.OK_200, seq[1])
+
+				print("processing SETUP success" + seq[1] +"\n")
 				
 				# Get the RTP/UDP port from the last line
 				self.clientInfo['rtpPort'] = request[2].split(' ')[3]
@@ -122,9 +124,10 @@ class ServerWorker:
 				try:
 					address = self.clientInfo['rtspSocket'][1][0]
 					port = int(self.clientInfo['rtpPort'])
+					print("send data end, address is" + str(address) + "port is " + str(port))
 					self.clientInfo['rtpSocket'].sendto(self.makeRtp(data, frameNumber),(address,port))
-				except:
-					print("Connection Error")
+				except Exception as e:
+					print("Connection Error, the error is" + str(e))
 					#print('-'*60)
 					#traceback.print_exc(file=sys.stdout)
 					#print('-'*60)

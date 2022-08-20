@@ -8,6 +8,7 @@ import os
 from http import *
 
 #测试网址：http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-file1.html
+#设置代理，参见这个https://blog.csdn.net/m0_67392010/article/details/124459780
 def makeHttpRequest(request):
     fields = request.split("\r\n")
     fields = fields[1:]
